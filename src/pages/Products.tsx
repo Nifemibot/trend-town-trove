@@ -22,7 +22,7 @@ const Products = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <Navigation 
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
@@ -32,12 +32,12 @@ const Products = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4">All Products</h1>
-          <p className="text-gray-600 mb-6">Discover our complete collection of amazing products</p>
+          <p className="text-muted-foreground mb-6">Discover our complete collection of amazing products</p>
           
           {/* Search */}
           <div className="flex max-w-md mb-6">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search products..."
@@ -72,7 +72,7 @@ const Products = () => {
             <h2 className="text-2xl font-semibold">
               {selectedCategory === "all" ? "All Products" : categories.find(c => c.id === selectedCategory)?.name}
             </h2>
-            <p className="text-gray-600">{filteredProducts.length} products found</p>
+            <p className="text-muted-foreground">{filteredProducts.length} products found</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -87,11 +87,11 @@ const Products = () => {
           
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <div className="text-gray-400 mb-4">
+              <div className="text-muted-foreground mb-4">
                 <ShoppingBag size={64} className="mx-auto" />
               </div>
-              <h3 className="text-xl font-medium text-gray-600 mb-2">No products found</h3>
-              <p className="text-gray-500">Try adjusting your search or category filter</p>
+              <h3 className="text-xl font-medium text-muted-foreground mb-2">No products found</h3>
+              <p className="text-muted-foreground">Try adjusting your search or category filter</p>
             </div>
           )}
         </div>

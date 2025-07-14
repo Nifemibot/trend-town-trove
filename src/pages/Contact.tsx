@@ -35,7 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <Navigation 
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
@@ -45,7 +45,7 @@ const Contact = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             We'd love to hear from you! Get in touch with us for any questions, 
             suggestions, or support needs.
           </p>
@@ -63,7 +63,7 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg">09118385195</p>
-                <p className="text-gray-600">Available Monday - Friday, 9AM - 6PM</p>
+                <p className="text-muted-foreground">Available Monday - Friday, 9AM - 6PM</p>
               </CardContent>
             </Card>
 
@@ -75,8 +75,8 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg">support@shophub.com</p>
-                <p className="text-gray-600">We'll respond within 24 hours</p>
+                <p className="text-lg">khalidnifemi13@gmail.com</p>
+                <p className="text-muted-foreground">We'll respond within 24 hours</p>
               </CardContent>
             </Card>
 
@@ -89,7 +89,7 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg">123 Shopping Street</p>
-                <p className="text-gray-600">Commerce City, CC 12345</p>
+                <p className="text-muted-foreground">Commerce City, CC 12345</p>
               </CardContent>
             </Card>
 
@@ -104,14 +104,14 @@ const Contact = () => {
                     <Instagram className="h-5 w-5 text-pink-600" />
                     <div>
                       <p className="font-medium">Instagram</p>
-                      <p className="text-gray-600">@abdulkhalidto_1</p>
+                      <p className="text-muted-foreground">@abdulkhalidto_1</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <MessageCircle className="h-5 w-5 text-black" />
+                    <MessageCircle className="h-5 w-5 text-black dark:text-white" />
                     <div>
                       <p className="font-medium">TikTok</p>
-                      <p className="text-gray-600">@newbot002</p>
+                      <p className="text-muted-foreground">@newbot002</p>
                     </div>
                   </div>
                 </div>

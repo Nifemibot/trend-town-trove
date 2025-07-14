@@ -3,6 +3,7 @@ import { ShoppingBag, Heart, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface NavigationProps {
   cartItemsCount: number;
@@ -11,39 +12,41 @@ interface NavigationProps {
 
 const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
   return (
-    <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
+    <nav className="bg-background shadow-sm border-b sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <ShoppingBag className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">ShopHub</span>
+            <span className="text-2xl font-bold text-foreground">°Ñëwbot°Hub</span>
           </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/" className="text-muted-foreground hover:text-blue-600 transition-colors font-medium">
               Home
             </Link>
-            <Link to="/products" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/products" className="text-muted-foreground hover:text-blue-600 transition-colors font-medium">
               Products
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/about" className="text-muted-foreground hover:text-blue-600 transition-colors font-medium">
               About
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/contact" className="text-muted-foreground hover:text-blue-600 transition-colors font-medium">
               Contact
             </Link>
           </div>
 
           {/* Right Actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="relative hover:bg-gray-100">
+            <ThemeToggle />
+            
+            <Button variant="ghost" size="icon" className="relative hover:bg-accent">
               <Heart className="h-5 w-5" />
             </Button>
             
             <Link to="/login">
-              <Button variant="ghost" size="icon" className="hover:bg-gray-100">
+              <Button variant="ghost" size="icon" className="hover:bg-accent">
                 <User className="h-5 w-5" />
               </Button>
             </Link>
@@ -51,7 +54,7 @@ const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="relative hover:bg-gray-100"
+              className="relative hover:bg-accent"
               onClick={onCartClick}
             >
               <ShoppingBag className="h-5 w-5" />

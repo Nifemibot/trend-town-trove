@@ -25,14 +25,14 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <Navigation 
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
       />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
+      <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20 dark:from-blue-800 dark:to-purple-900">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6 animate-fade-in">
@@ -82,7 +82,7 @@ const Index = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold">Featured Products</h2>
-            <p className="text-gray-600">{filteredProducts.length} products shown</p>
+            <p className="text-muted-foreground">{filteredProducts.length} products shown</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -97,19 +97,19 @@ const Index = () => {
           
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <div className="text-gray-400 mb-4">
+              <div className="text-muted-foreground mb-4">
                 <ShoppingBag size={64} className="mx-auto" />
               </div>
-              <h3 className="text-xl font-medium text-gray-600 mb-2">No products found</h3>
-              <p className="text-gray-500">Try adjusting your search or category filter</p>
+              <h3 className="text-xl font-medium text-muted-foreground mb-2">No products found</h3>
+              <p className="text-muted-foreground">Try adjusting your search or category filter</p>
             </div>
           )}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center py-12 bg-gray-100 rounded-lg">
+        <div className="text-center py-12 bg-muted/50 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">Want to see more?</h3>
-          <p className="text-gray-600 mb-6">Explore our complete collection of amazing products</p>
+          <p className="text-muted-foreground mb-6">Explore our complete collection of amazing products</p>
           <Button asChild size="lg">
             <a href="/products">View All Products</a>
           </Button>
