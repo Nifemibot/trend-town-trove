@@ -1,5 +1,6 @@
 
 import { ShoppingBag, Heart, User } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,28 +15,25 @@ const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <ShoppingBag className="h-8 w-8 text-blue-600" />
             <span className="text-2xl font-bold text-gray-900">ShopHub</span>
-          </div>
+          </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Home
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </Link>
+            <Link to="/products" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Products
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Categories
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               About
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </Link>
+            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* Right Actions */}
@@ -44,9 +42,11 @@ const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
               <Heart className="h-5 w-5" />
             </Button>
             
-            <Button variant="ghost" size="icon" className="hover:bg-gray-100">
-              <User className="h-5 w-5" />
-            </Button>
+            <Link to="/login">
+              <Button variant="ghost" size="icon" className="hover:bg-gray-100">
+                <User className="h-5 w-5" />
+              </Button>
+            </Link>
             
             <Button 
               variant="ghost" 

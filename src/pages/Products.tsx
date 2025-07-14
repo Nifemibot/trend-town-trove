@@ -9,16 +9,13 @@ import Cart from "@/components/Cart";
 import { useCart } from "@/hooks/useCart";
 import { products, categories } from "@/data/products";
 
-const Index = () => {
+const Products = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItems, addToCart, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
-  // Show only first 6 products on homepage
-  const featuredProducts = products.slice(0, 6);
-
-  const filteredProducts = featuredProducts.filter(product => {
+  const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -31,39 +28,30 @@ const Index = () => {
         onCartClick={() => setIsCartOpen(true)}
       />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6 animate-fade-in">
-              Discover Amazing Products
-            </h1>
-            <p className="text-xl mb-8 opacity-90 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Shop the latest trends and find everything you need in one place
-            </p>
-            <div className="flex max-w-md mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <Input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-3 text-gray-900 rounded-l-lg border-0"
-                />
-              </div>
-              <Button className="bg-orange-500 hover:bg-orange-600 px-6 rounded-l-none">
-                Search
-              </Button>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">All Products</h1>
+          <p className="text-gray-600 mb-6">Discover our complete collection of amazing products</p>
+          
+          {/* Search */}
+          <div className="flex max-w-md mb-6">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
             </div>
           </div>
         </div>
-      </section>
 
-      <div className="container mx-auto px-4 py-8">
         {/* Category Filters */}
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Shop by Category</h2>
+          <h2 className="text-2xl font-semibold mb-4">Categories</h2>
           <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <Button
@@ -78,14 +66,16 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Featured Products */}
+        {/* Products Grid */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold">Featured Products</h2>
-            <p className="text-gray-600">{filteredProducts.length} products shown</p>
+            <h2 className="text-2xl font-semibold">
+              {selectedCategory === "all" ? "All Products" : categories.find(c => c.id === selectedCategory)?.name}
+            </h2>
+            <p className="text-gray-600">{filteredProducts.length} products found</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -105,15 +95,6 @@ const Index = () => {
             </div>
           )}
         </div>
-
-        {/* Call to Action */}
-        <div className="text-center py-12 bg-gray-100 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">Want to see more?</h3>
-          <p className="text-gray-600 mb-6">Explore our complete collection of amazing products</p>
-          <Button asChild size="lg">
-            <a href="/products">View All Products</a>
-          </Button>
-        </div>
       </div>
 
       <Cart
@@ -128,4 +109,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Products;
