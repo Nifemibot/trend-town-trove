@@ -1,11 +1,13 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useUser } from "@/contexts/UserContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,12 +15,25 @@ const Login = () => {
     email: "",
     password: ""
   });
+  const { login } = useUser();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login here
-    console.log("Login:", formData);
-    alert("Login functionality will be implemented with backend integration!");
+    
+    // Simulate login - in real app, this would be an API call
+    const userData = {
+      name: "User", // This would come from the backend
+      email: formData.email
+    };
+    
+    login(userData);
+    toast({
+      title: "Login successful",
+      description: "Welcome back!",
+    });
+    navigate("/");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,15 +44,15 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <ShoppingBag className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">ShopHub</span>
+            <span className="text-2xl font-bold text-foreground">°Ñëwbot°Hub</span>
           </div>
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
-          <p className="text-gray-600">Sign in to your account</p>
+          <p className="text-muted-foreground">Sign in to your account</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -87,7 +102,7 @@ const Login = () => {
             </Button>
 
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Don't have an account?{" "}
                 <Link to="/signup" className="text-blue-600 hover:underline">
                   Sign up here

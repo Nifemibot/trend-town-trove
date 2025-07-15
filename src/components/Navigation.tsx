@@ -1,9 +1,10 @@
 
-import { ShoppingBag, Heart, User } from "lucide-react";
+import { ShoppingBag, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "./ThemeToggle";
+import UserAvatar from "./UserAvatar";
 
 interface NavigationProps {
   cartItemsCount: number;
@@ -45,11 +46,7 @@ const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
               <Heart className="h-5 w-5" />
             </Button>
             
-            <Link to="/login">
-              <Button variant="ghost" size="icon" className="hover:bg-accent">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
+            <UserAvatar />
             
             <Button 
               variant="ghost" 

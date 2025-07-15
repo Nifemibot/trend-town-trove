@@ -1,11 +1,13 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useUser } from "@/contexts/UserContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,18 +18,34 @@ const Signup = () => {
     password: "",
     confirmPassword: ""
   });
+  const { login } = useUser();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      toast({
+        title: "Error",
+        description: "Passwords don't match!",
+        variant: "destructive",
+      });
       return;
     }
 
-    // Handle signup here
-    console.log("Signup:", formData);
-    alert("Signup functionality will be implemented with backend integration!");
+    // Simulate signup - in real app, this would be an API call
+    const userData = {
+      name: formData.name,
+      email: formData.email
+    };
+    
+    login(userData);
+    toast({
+      title: "Account created successfully",
+      description: "Welcome to °Ñëwbot°Hub!",
+    });
+    navigate("/");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +56,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <ShoppingBag className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">ShopHub</span>
+            <span className="text-2xl font-bold text-foreground">°Ñëwbot°Hub</span>
           </div>
           <CardTitle className="text-2xl">Create Account</CardTitle>
-          <p className="text-gray-600">Join ShopHub today</p>
+          <p className="text-muted-foreground">Join °Ñëwbot°Hub today</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -136,7 +154,7 @@ const Signup = () => {
             </Button>
 
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Already have an account?{" "}
                 <Link to="/login" className="text-blue-600 hover:underline">
                   Sign in here
