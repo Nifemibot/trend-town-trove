@@ -104,7 +104,7 @@ const Contact = () => {
                     <Instagram className="h-5 w-5 text-pink-600" />
                     <div>
                       <p className="font-medium">Instagram</p>
-                      <p className="text-muted-foreground">@2abdulkhalidto_</p>
+                      <p className="text-muted-foreground">@abdulkhalidto_</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
