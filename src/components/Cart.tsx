@@ -1,4 +1,3 @@
-
 import { X, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +11,8 @@ import {
 import CheckoutForm from "./CheckoutForm";
 import OrderReceipt from "./OrderReceipt";
 import { useState } from "react";
+import { useUser } from "@/contexts/UserContext";
+import { Link } from "react-router-dom";
 
 interface CartItem {
   id: number;
@@ -33,9 +34,14 @@ interface CartProps {
 const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, total }: CartProps) => {
   const [currentView, setCurrentView] = useState<'cart' | 'checkout' | 'receipt'>('cart');
   const [orderData, setOrderData] = useState(null);
+  const { isLoggedIn } = useUser();
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleCheckout = () => {
+    if (!isLoggedIn) {
+      // Don't proceed to checkout if user is not logged in
+      return;
+    }
     setCurrentView('checkout');
   };
 
@@ -137,13 +143,33 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, total }:
                 <span>${total.toFixed(2)}</span>
               </div>
               <div className="space-y-2">
-                <Button 
-                  className="w-full bg-black text-white hover:bg-gray-800"
-                  onClick={handleCheckout}
-                >
-                  Proceed to Checkout
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
+                {!isLoggedIn ? (
+                  <div className="space-y-3">
+                    <p className="text-sm text-muted-foreground text-center">
+                      You need to sign in to proceed with checkout
+                    </p>
+                    <div className="flex gap-2">
+                      <Link to="/login" className="flex-1" onClick={onClose}>
+                        <Button className="w-full bg-black text-white hover:bg-gray-800">
+                          Sign In
+                        </Button>
+                      </Link>
+                      <Link to="/signup" className="flex-1" onClick={onClose}>
+                        <Button variant="outline" className="w-full">
+                          Sign Up
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <Button 
+                    className="w-full bg-black text-white hover:bg-gray-800"
+                    onClick={handleCheckout}
+                  >
+                    Proceed to Checkout
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                )}
                 <Button variant="outline" className="w-full" onClick={onClose}>
                   Continue Shopping
                 </Button>
