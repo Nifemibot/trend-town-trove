@@ -104,7 +104,7 @@ const Contact = () => {
                     <Instagram className="h-5 w-5 text-pink-600" />
                     <div>
                       <p className="font-medium">Instagram</p>
-                      <p className="text-muted-foreground">@abdulkhalidto_1</p>
+                      <p className="text-muted-foreground">@2abdulkhalidto_</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -112,6 +112,13 @@ const Contact = () => {
                     <div>
                       <p className="font-medium">TikTok</p>
                       <p className="text-muted-foreground">@newbot002</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <MessageCircle className="h-5 w-5 text-yellow-400" />
+                    <div>
+                      <p className="font-medium">Snapchat</p>
+                      <p className="text-muted-foreground">@NEWBOT</p>
                     </div>
                   </div>
                 </div>
